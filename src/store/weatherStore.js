@@ -73,12 +73,11 @@ export default {
       await axios.get(url)
         .then(result => {
           let res = result.data[0];
+          let cityName = data.ParentCity ? data.ParentCity.LocalizedName : data.LocalizedName;
           let time = moment(res.LocalObservationDateTime).format("LL")
           city = {
             key: queryKey,
-            city: data.AdministrativeArea
-              ? data.AdministrativeArea.LocalizedName
-              : data.selectCity.city,
+            city: data.selectCity ? data.selectCity.city : cityName,
             country: data.Country
               ? data.Country.LocalizedName
               : data.selectCity.country,
