@@ -32,11 +32,15 @@ export default {
       if (state.cities.length === 0) {
         let arr = [];
         if (localStorage.getItem("city") != null) {
-          arr = JSON.parse(localStorage.getItem("city"));
+          try {
+            arr = JSON.parse(localStorage.getItem("city"));
+          } catch (e) {
+            return console.error(e)
+          }
+          arr.forEach(el => {
+            dispatch("GET_WEATHER_CITY", el);
+          });
         }
-        arr.forEach(el => {
-          dispatch("GET_WEATHER_CITY", el);
-        });
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(position => {
             let latitude = position.coords.latitude;
@@ -91,6 +95,7 @@ export default {
             }
           );
           city = {
+            fromLS: data.fromLS ? true : false,
             key: queryKey,
             city: data.selectCity ? data.selectCity.city : cityName,
             country: data.Country
@@ -179,9 +184,45 @@ export default {
         .catch(error => console.error(error.message));
       return arr;
     },
-    DELETE_FROM_LS() {
-      /// ToDo
-    }
+    SAVE_TO_LS({ commit }, payload) {
+      let arr = [];
+      let exist = false;
+      let city = {};
+      if (localStorage.getItem("city") != null) {
+        try {
+          arr = JSON.parse(localStorage.getItem("city"));
+        } catch (e) {
+          return console.error(e)
+        }
+        if (arr.some(e => e.Key === payload.city.key)) {
+          exist = true;
+        }
+      }
+      if (!exist) {
+        city = {
+          Key: payload.city.key,
+          selectCity: {
+            city: payload.city.city,
+            country: payload.city.country
+          },
+          fromLS: true
+        };
+        arr.push(city);
+        localStorage.setItem("city", JSON.stringify(arr));
+      }
+    },
+    DELETE_TO_LS({ commit }, payload) {
+      let arr = [];
+      if (localStorage.getItem("city") != null) {
+        try {
+          arr = JSON.parse(localStorage.getItem("city"));
+        } catch (e) {
+          return console.error(e)
+        }
+        let filteredArr = arr.filter(el => el.Key != payload.city.key);
+        localStorage.setItem("city", JSON.stringify(filteredArr));
+      }
+    },
   },
   getters: {}
 };

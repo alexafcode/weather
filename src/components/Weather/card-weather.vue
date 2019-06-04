@@ -39,7 +39,8 @@
         </div>
       </div>
       <div class="card__footer">
-        <button @click="saveToLS">Сохранить</button>
+        <button @click="saveToLS" v-if="!save">Сохранить</button>
+        <button @click="deleteToLS" v-if="save">Удалить</button>
         <div class="card__footer-text">
           <div>{{city.weatherText}}</div>
           <div>Видимость {{city.visibility}}</div>
@@ -75,38 +76,34 @@ export default {
   },
   data: () => ({
     cityForecastItems: null,
-    showMore: false
+    showMore: false,
+    save: null
   }),
+  mounted() {
+    if (this.city.fromLS) {
+      this.save = true;
+    } else {
+      this.save = false;
+    }
+  },
   computed: {
     dayTime() {
       return this.city.IsDayTime ? "day" : "night";
     },
-    ...mapActions("weatherStore", ["GET_WEATHER_FORECAST"])
+    ...mapActions("weatherStore", [
+      "GET_WEATHER_FORECAST",
+      "SAVE_TO_LS",
+      "DELETE_TO_LS"
+    ])
   },
   methods: {
     saveToLS() {
-      let arr = [];
-      let city = {};
-      city = {
-        Key: this.city.key,
-        selectCity: {
-          city: this.city.city,
-          country: this.city.country
-        }
-      };
-      if (localStorage.getItem("city") != null) {
-        arr = JSON.parse(localStorage.getItem("city"));
-      }
-      let exist = false;
-      arr.forEach(el => {
-        if (el.Key === this.city.key) {
-          exist = true;
-        }
-      });
-      if (!exist) {
-        arr.push(city);
-        localStorage.setItem("city", JSON.stringify(arr));
-      }
+      this.SAVE_TO_LS;
+      this.save = true;
+    },
+    deleteToLS() {
+      this.DELETE_TO_LS;
+      this.save = false;
     },
     GetWeatherForecast() {
       if (!this.showMore) {
@@ -192,7 +189,9 @@ export default {
     justify-content: space-around;
     button {
       border: none;
+      min-width: 95px;
       font-size: 16px;
+      cursor: pointer;
       color: burlywood;
       text-decoration: underline;
       background-color: transparent;
