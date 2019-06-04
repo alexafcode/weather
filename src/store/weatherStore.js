@@ -43,17 +43,15 @@ export default {
             let longitude = position.coords.longitude;
             let url = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${
               key.weather
-            }&q=${latitude},${longitude}&language=ru-ru`;
+              }&q=${latitude},${longitude}&language=ru-ru`;
             axios
               .get(url)
               .then(response => {
                 // compare key in localStorage
                 let exist = false;
-                arr.forEach(el => {
-                  if (el.Key === response.data.Key) {
-                    exist = true;
-                  }
-                });
+                if (arr.some(e => e.Key === response.data.Key)) {
+                  exist = true;
+                }
                 if (!exist) {
                   dispatch("GET_WEATHER_CITY", response.data);
                 }
@@ -63,6 +61,7 @@ export default {
           });
         } else {
           alert("Геолокация Недоступна");
+          // ToDo Modal
         }
       } else {
         commit("SET_LOADING", true);
@@ -73,7 +72,7 @@ export default {
       let city = {};
       let url = `https://dataservice.accuweather.com/currentconditions/v1/${queryKey}?apikey=${
         key.weather
-      }&language=ru-ru&details=true`;
+        }&language=ru-ru&details=true`;
       await axios
         .get(url)
         .then(result => {
@@ -97,18 +96,18 @@ export default {
               : data.selectCity.country,
             temp: `${res.Temperature.Metric.Value.toFixed()}°  ${
               res.Temperature.Metric.Unit
-            }`,
+              }`,
             windDirect: res.Wind.Direction.Localized,
             windSpeed: `${res.Wind.Speed.Metric.Value}  ${
               res.Wind.Speed.Metric.Unit
-            }`,
+              }`,
             weatherText: res.WeatherText,
             realFeelTemperature: `${res.RealFeelTemperature.Metric.Value.toFixed()}° ${
               res.RealFeelTemperature.Metric.Unit
-            }`,
+              }`,
             visibility: `${res.Visibility.Metric.Value} ${
               res.Visibility.Metric.Unit
-            }`,
+              }`,
             WeatherIcon: res.WeatherIcon,
             IsDayTime: res.IsDayTime,
             time: time,
@@ -123,7 +122,7 @@ export default {
       commit("SET_SEARCHLOADING", true);
       let url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${
         key.weather
-      }&q=${payload.searchText}&language=ru-ru`;
+        }&q=${payload.searchText}&language=ru-ru`;
       let items = [];
       let cities = {};
       axios
@@ -154,7 +153,7 @@ export default {
       let arr = [];
       let url = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${
         payload.city.key
-      }?apikey=${key.weather}&language=ru-ru&metric=true`;
+        }?apikey=${key.weather}&language=ru-ru&metric=true`;
       await axios
         .get(url)
         .then(async result => { // ???

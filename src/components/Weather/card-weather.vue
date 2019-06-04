@@ -232,6 +232,9 @@ export default {
         height: 25vh;
         background-position: center;
       }
+      .card__center-wind {
+        font-size: 1.25rem;
+      }
     }
     .card__footer {
       display: flex;
