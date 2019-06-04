@@ -1,9 +1,9 @@
 <template>
-  <div class="weather__searchList">
+  <div class="search-list">
     <div v-for="(item, i) in items" :key="i">
-      <div class="weather__searchList_item" @click="selectItem(item)">
-        <div class="weather__searchList_item_city" v-text="item.city"></div>
-        <div class="weather__searchList_item_country" v-text="item.country"></div>
+      <div class="search-list__item" @click="selectItem(item)">
+        <div class="search-list__city" v-text="item.city"></div>
+        <div class="search-list__country" v-text="item.country"></div>
       </div>
     </div>
   </div>
@@ -18,10 +18,6 @@ export default {
       required: true
     }
   },
-  data: () => ({}),
-  computed: {},
-  created() {},
-  mounted() {},
   methods: {
     selectItem(item) {
       this.$emit("selectItem", item);
@@ -30,7 +26,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.weather__searchList {
+.search-list {
   left: 0;
   right: 0;
   z-index: 1;
@@ -43,20 +39,20 @@ export default {
   margin-right: auto;
   position: absolute;
   background-color: whitesmoke;
-  .weather__searchList_item {
+  .search-list__item {
     &:hover {
       font-weight: bold;
     }
-    .weather__searchList_item_city {
+    .search-list__city {
       font-size: 1.1rem;
     }
-    .weather__searchList_item_country {
+    .search-list__country {
       font-size: .9rem;
     }
   }
 }
 @media screen and (max-width: 800px) {
-  .weather__searchList {
+  .search-list {
     width: 55%;
   }
 }

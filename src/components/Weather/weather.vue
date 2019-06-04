@@ -50,7 +50,6 @@ export default {
   created() {
     this.INIT_STATE;
   },
-  mounted() {},
   methods: {
     searchCity() {
       this.SEARCH_CITY;

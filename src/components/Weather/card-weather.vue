@@ -83,8 +83,6 @@ export default {
     },
     ...mapActions("weatherStore", ["GET_WEATHER_FORECAST"])
   },
-  created() {},
-  mounted() {},
   methods: {
     saveToLS() {
       let arr = [];

@@ -29,11 +29,6 @@ export default {
       required: true
     }
   },
-  data: () => ({}),
-  computed: {},
-  created() {},
-  mounted() {},
-  methods: {}
 };
 </script>
 <style lang="scss" scoped>
