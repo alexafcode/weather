@@ -33,7 +33,6 @@ export default {
   width: 20%;
   overflow: auto;
   cursor: pointer;
-  max-height: 100%;
   margin-top: 0.75rem;
   margin-left: auto;
   margin-right: auto;

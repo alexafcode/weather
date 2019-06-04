@@ -58,10 +58,12 @@ export default {
               })
               // eslint-disable-next-line
               .catch(error => console.error("Erorr", error.message));
-          });
+          }, () => {
+            commit("SET_LOADING", false);
+          })
         } else {
-          alert("Геолокация Недоступна");
-          // ToDo Modal
+          // Geolocation is not Supported
+          commit("SET_LOADING", false);
         }
       } else {
         commit("SET_LOADING", true);

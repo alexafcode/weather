@@ -106,9 +106,6 @@ export default {
       if (!exist) {
         arr.push(city);
         localStorage.setItem("city", JSON.stringify(arr));
-        alert("Сохранено");
-      } else {
-        alert("Уже Сохранено");
       }
     },
     GetWeatherForecast() {
