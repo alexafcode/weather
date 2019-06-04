@@ -5,46 +5,46 @@
       :style="{backgroundImage:`url(${require(`@/assets/weather-icons/${dayTime}.jpg`)})`}"
     >
       <div class="card__title">
-        <div class="card__title_time">{{city.time}}</div>
-        <div class="card__title_location">{{city.country}}, {{city.city}}</div>
+        <div class="card__title-time">{{city.time}}</div>
+        <div class="card__title-location">{{city.country}}, {{city.city}}</div>
       </div>
       <div class="card__center">
-        <div class="card__center_temp_text">
+        <div class="card__center-text">
           Сейчас:
-          <div class="card__center_temp">{{city.temp}}</div>
-          <div class="card__center_tempreal_text">
+          <div class="card__center-temp">{{city.temp}}</div>
+          <div class="card__center-real">
             Ощущается как:
-            <div class="card__center_tempreal">{{city.realFeelTemperature}}</div>
+            <div class="card__center-val">{{city.realFeelTemperature}}</div>
           </div>
         </div>
         <div>
           <div
-            class="card__center_icon"
+            class="card__center-icon"
             :style="{backgroundImage: `url(${require(`@/assets/weather-icons/${city.WeatherIcon}.png`)})`}"
           ></div>
         </div>
-        <div class="card__center_wind">
+        <div class="card__center-wind">
           <div>
             Направление ветра:
-            <span class="card__center_wind_direct">{{city.windDirect}}</span>
+            <span class="card__center-direct">{{city.windDirect}}</span>
           </div>
-          <div class="text-md-center">
-            Скорость ветра:
-            <span class="card__center_wind_speed">{{city.windSpeed}}</span>
-          </div>
-          <div class="card__center_pressure">
+          <!-- <div class="text-md-center"> -->
+          Скорость ветра:
+          <span class="card__center-speed">{{city.windSpeed}}</span>
+          <!-- </div> -->
+          <div class="card__center-pressure">
             <img src="@/assets//weather-icons/icon-pressure.png" alt="pressure">
-            <span class="card__center_pressure">{{city.pressure}}</span>
+            <span class="card__center-pressure-val">{{city.pressure}}</span>
           </div>
         </div>
       </div>
       <div class="card__footer">
         <button @click="saveToLS">Сохранить</button>
-        <div class="card__footer_text">
+        <div class="card__footer-text">
           <div>{{city.weatherText}}</div>
           <div>Видимость {{city.visibility}}</div>
         </div>
-        <button class="card__footer_more" @click="GetWeatherForecast">На 5 дней</button>
+        <button class="card__footer-more" @click="GetWeatherForecast">На 5 дней</button>
       </div>
     </div>
     <div
@@ -140,9 +140,9 @@ export default {
     font-size: 1.1rem;
     font-weight: 400;
     text-align: center;
-    .card__title_time {
+    .card__title-time {
       color: wheat;
-      font-size: .9rem;
+      font-size: 0.9rem;
       font-weight: 200;
     }
   }
@@ -151,42 +151,42 @@ export default {
     flex-direction: row;
     align-items: center;
 
-    .card__center_temp_text {
+    .card__center-text {
       line-height: 1.5;
       color: lightgray;
-      .card__center_temp {
+      .card__center-temp {
         font-size: 2rem;
         font-weight: 400;
         line-height: 1.75rem;
         color: whitesmoke;
       }
     }
-    .card__center_tempreal_text {
+    .card__center-real {
       color: lightgray;
-      .card__center_tempreal {
+      .card__center-val {
         color: white;
         font-size: 1.25rem;
         font-weight: 400;
         line-height: 1.5rem;
       }
     }
-    .card__center_pressure {
-      color: lightgray;
-    }
-    .card__center_icon {
+    .card__center-icon {
       width: 190px;
       height: 135px;
       background-size: contain;
       background-position: top;
       background-repeat: no-repeat;
     }
-    .card__center_wind {
+    .card__center-wind {
       line-height: 1.5;
       color: lightgray;
-      .card__center_wind_speed,
-      .card__center_wind_direct {
+      .card__center-speed,
+      .card__center-direct {
         color: white;
       }
+    }
+    .card__center-pressure {
+      color: lightgray;
     }
   }
   .card__footer {
@@ -201,7 +201,7 @@ export default {
       background-color: transparent;
     }
     color: lightgray;
-    .card__footer_text {
+    .card__footer-text {
       text-align: center;
       align-items: flex-end;
     }
@@ -227,7 +227,7 @@ export default {
     margin: auto;
     .card__center {
       font-size: 12px;
-      .card__center_icon {
+      .card__center-icon {
         width: 45vw;
         height: 25vh;
         background-position: center;
@@ -237,7 +237,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      .card__footer_text {
+      .card__footer-text {
         font-size: 12px;
         text-align: center;
       }
@@ -247,7 +247,5 @@ export default {
     width: 90%;
     margin: auto;
   }
-}
-@media screen and (max-width: 600px) {
 }
 </style>

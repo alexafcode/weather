@@ -94,8 +94,8 @@ export default {
       width: 70%;
     }
     button {
-      margin-left: .25rem;
-      border-radius: .75rem;
+      margin-left: 0.25rem;
+      border-radius: 0.75rem;
     }
   }
 }
@@ -103,7 +103,7 @@ export default {
   .weather {
     .weather__search {
       width: 80%;
-      margin: .75rem auto;
+      margin: 0.75rem auto;
       input {
         width: 75%;
       }

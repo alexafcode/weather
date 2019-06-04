@@ -8,7 +8,6 @@ export default {
     items: [],
     isLoading: null,
     searchLoading: null
-    // time: null
   },
   mutations: {
     SET_CITY(state, payload) {
@@ -131,15 +130,15 @@ export default {
         .get(url)
         .then(response => {
           if (response.data.length > 0) {
-            response.data.forEach(el => {
-              cities = {
+            items = response.data.map(el => {
+              return {
                 country: el.Country.LocalizedName,
                 city: el.LocalizedName,
                 Key: el.Key
               };
-              items.push(cities);
-            });
-          } else {
+            })
+          }
+          else {
             cities = {
               city: "Ничего не найдено"
             };
@@ -158,7 +157,7 @@ export default {
       }?apikey=${key.weather}&language=ru-ru&metric=true`;
       await axios
         .get(url)
-        .then(async result => {
+        .then(async result => { // ???
           let res = result.data.DailyForecasts;
           arr = res.map(el => {
             return {

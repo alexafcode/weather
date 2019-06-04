@@ -47,7 +47,7 @@ export default {
       font-size: 1.1rem;
     }
     .search-list__country {
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   }
 }

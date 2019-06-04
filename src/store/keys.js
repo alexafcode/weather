@@ -1,4 +1,4 @@
 const key = {
-  weather: "eMnxDj2GF4ffTteDsanTrmQEaP2mgUIA"
+  weather: ""
   }
   export default key

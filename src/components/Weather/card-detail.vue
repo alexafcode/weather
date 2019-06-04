@@ -2,24 +2,23 @@
   <div class="detail">
     <div class="detail__date">{{ cityItem.date }}</div>
     <div
-      class="detail__day_icon"
+      class="detail__day-icon"
       :style="{backgroundImage: `url(${require(`@/assets/weather-icons/${cityItem.dayIcon}.png`)})`}"
     ></div>
-    <div class="detail__day_temp">Днём:</div>
-    <div class="detail__day_temp_value">{{ cityItem.tempDay }}</div>
+    <div class="detail__day-temp">Днём:</div>
+    <div class="detail__day-value">{{ cityItem.tempDay }}</div>
     <div
-      class="detail__night_icon"
+      class="detail__night-icon"
       :style="{backgroundImage: `url(${require(`@/assets/weather-icons/${cityItem.nightIcon}.png`)})`}"
     ></div>
-    <div class="detail__night_temp">Ночью:</div>
-    <div class="detail__night_temp_value">{{ cityItem.tempNight }}</div>
-    <div class="detail__day_text">{{ cityItem.dayIconText }}</div>
+    <div class="detail__night-temp">Ночью:</div>
+    <div class="detail__night-value">{{ cityItem.tempNight }}</div>
+    <div class="detail__text">{{ cityItem.dayIconText }}</div>
   </div>
 </template>
 <script>
 export default {
   name: "card-datails",
-  components: {},
   props: {
     cityItem: {
       type: Object,
@@ -28,7 +27,7 @@ export default {
     dayTime: {
       required: true
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -45,7 +44,7 @@ export default {
   .detail__date {
     color: white;
   }
-  .detail__day_icon {
+  .detail__day-icon {
     width: 80px;
     height: 50px;
     min-height: 50px;
@@ -53,15 +52,15 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
   }
-  .detail__day_temp {
+  .detail__day-temp {
     color: lightgray;
   }
-  .detail__day_temp_value {
+  .detail__day-value {
     color: white;
     font-size: 1.25rem;
     font-weight: 400;
   }
-  .detail__night_icon {
+  .detail__night-icon {
     width: 80px;
     height: 50px;
     min-height: 50px;
@@ -69,15 +68,15 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
   }
-  .detail__night_temp {
+  .detail__night-temp {
     color: lightgray;
   }
-  .detail__night_temp_value {
+  .detail__night-value {
     color: white;
     font-size: 1rem;
     font-weight: 400;
   }
-  .detail__day_text {
+  .detail__text {
     font-size: 0.7rem;
     word-break: normal;
     color: lightgray;
@@ -87,14 +86,14 @@ export default {
 @media screen and (max-width: 800px) {
   .detail {
     width: 16vw;
-    .detail__day_icon {
+    .detail__day-icon {
       width: 15vw;
     }
-    .detail__night_icon {
+    .detail__night-icon {
       width: 15vw;
       display: none;
     }
-    .detail__day_text {
+    .detail__text {
       word-break: break-word;
     }
   }
